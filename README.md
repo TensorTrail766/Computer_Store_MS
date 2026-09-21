@@ -1,1 +1,1 @@
-# Software_Engineering
+# Computer store management system
