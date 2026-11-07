@@ -1,1 +1,0 @@
-# Computer store management system
