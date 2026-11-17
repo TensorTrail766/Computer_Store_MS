@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+#
+# pre-push hook — refuses direct pushes to protected branches (main / master).
+#
+# Every change must arrive on `main` through a pull request from your own
+# branch. This hook stops the mistake locally, before it ever reaches GitHub.
+#
+# Installed automatically by:  bash scripts/setup-hooks.sh
+# Emergency override:          ALLOW_MAIN_PUSH=1 git push origin main
+
+set -euo pipefail
+
+PROTECTED_BRANCHES=("main" "master")
+remote_name="${1:-origin}"
+
+if [[ "${ALLOW_MAIN_PUSH:-0}" == "1" ]]; then
+  echo "pre-push: ALLOW_MAIN_PUSH=1 is set — allowing push to a protected branch." >&2
+  exit 0
+fi
+
+blocked=0
+
+# Fields arrive on stdin as: <local ref> <local sha> <remote ref> <remote sha>
+# shellcheck disable=SC2034  # the sha fields are part of the protocol, not used here
+while read -r local_ref local_sha remote_ref remote_sha; do
+  [[ -z "${remote_ref:-}" ]] && continue
+
+  for branch in "${PROTECTED_BRANCHES[@]}"; do
+    if [[ "$remote_ref" == "refs/heads/$branch" ]]; then
+      blocked=1
+      local_name="${local_ref#refs/heads/}"
+      echo "" >&2
+      echo "  ✖  Push blocked: '$branch' is a protected branch." >&2
+      if [[ -n "$local_ref" && "$local_ref" != "(delete)" ]]; then
+        echo "     You tried to push '$local_name' -> $remote_name/$branch" >&2
+      fi
+      echo "" >&2
+      echo "     Work on a branch and open a pull request instead:" >&2
+      echo "       git switch -c feature/short-description" >&2
+      echo "       git push -u origin feature/short-description" >&2
+      echo "       gh pr create --fill" >&2
+      echo "" >&2
+      echo "     See docs/collaboration.md for the full workflow." >&2
+      echo "     Emergency override (maintainers only):" >&2
+      echo "       ALLOW_MAIN_PUSH=1 git push origin $branch" >&2
+      echo "" >&2
+    fi
+  done
+done
+
+if [[ "$blocked" -ne 0 ]]; then
+  echo "pre-push: aborted. Nothing was pushed." >&2
+  exit 1
+fi
+
+exit 0

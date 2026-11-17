@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+#
+# commit-msg hook — keeps commit messages usable in history and PR reviews.
+#
+# Hard rule:  the message must not be empty.
+# Soft rules: short or vague subjects get a warning (commit still proceeds).
+#
+# Installed automatically by:  bash scripts/setup-hooks.sh
+
+set -euo pipefail
+
+msg_file="${1:-}"
+if [[ -z "$msg_file" || ! -f "$msg_file" ]]; then
+  exit 0
+fi
+
+# Ignore comment lines (git adds them) and blank lines.
+subject="$(grep -v '^#' "$msg_file" | sed -e 's/[[:space:]]*$//' | grep -v '^$' | head -n 1 || true)"
+
+if [[ -z "$subject" ]]; then
+  echo "" >&2
+  echo "  ✖  Commit blocked: the message is empty." >&2
+  echo "     Write what the change does, e.g. 'add order totals to receipt page'." >&2
+  echo "" >&2
+  exit 1
+fi
+
+lower_subject="$(printf '%s' "$subject" | tr '[:upper:]' '[:lower:]')"
+
+if [[ ${#subject} -lt 8 ]]; then
+  echo "  ⚠  Commit subject is very short: \"$subject\"" >&2
+  echo "     Consider a clearer message — future you will read this in the PR." >&2
+fi
+
+case "$lower_subject" in
+  wip*|"work in progress"*|temp*|tmp*|asdf*|"final"|"final version"|"update"|"changes"|"stuff")
+    echo "  ⚠  Vague commit subject: \"$subject\"" >&2
+    echo "     Describe the actual change instead of a placeholder." >&2
+    ;;
+esac
+
+if [[ "$subject" == *. ]]; then
+  echo "  ⚠  Commit subject ends with a period. Convention: no trailing period." >&2
+fi
+
+if [[ ${#subject} -gt 72 ]]; then
+  echo "  ⚠  Commit subject is longer than 72 characters — consider shortening it" >&2
+  echo "     and moving the detail into the commit body." >&2
+fi
+
+exit 0

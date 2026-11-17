@@ -1,0 +1,125 @@
+name: CI
+
+# Runs on every pull request into main, and on main itself after a merge.
+# The job id below ("checks") is the status check that branch protection
+# requires before a pull request can be merged — rename it and you must
+# update the protection rule too.
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out the branch
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
+          if [ -f requirements-dev.txt ]; then
+            pip install -r requirements-dev.txt
+          fi
+          pip install pytest
+
+      - name: Syntax check every Python file
+        run: python -m compileall -q src tests
+
+      - name: Run tests
+        run: |
+          shopt -s globstar nullglob
+          test_files=(tests/**/test_*.py tests/**/*_test.py)
+          if [ ${#test_files[@]} -eq 0 ]; then
+            echo "No test files yet — skipping pytest."
+            exit 0
+          fi
+          set +e
+          python -m pytest -q
+          status=$?
+          set -e
+          # pytest exits 5 when it collects nothing; that is not a failure here.
+          if [ "$status" -eq 5 ]; then
+            echo "pytest collected no tests — treating as pass."
+            exit 0
+          fi
+          exit "$status"
+
+      - name: Guard against committed secrets
+        run: |
+          # Cheap, dependency-free scan for obvious credential leaks.
+          if grep -rInE '(password|passwd|secret|api[_-]?key|token)[[:space:]]*=[[:space:]]*["'"'"'][^"'"'"']{3,}' \
+               --include='*.py' --include='*.sql' --include='*.yml' --include='*.yaml' \
+               --include='*.json' --include='*.ini' --include='*.cfg' . 2>/dev/null \
+             | grep -vE '(os\.environ|getenv|process\.env|YOUR_|CHANGEME|example|placeholder|<.*>)'; then
+            echo "::warning::Possible hard-coded credential found. Move it to an environment variable or a local .env file (see CONTRIBUTING.md)."
+          else
+            echo "No obvious hard-coded credentials."
+          fi
+
+  # Fails if someone opens a pull request *from* main back into main,
+  # or if the PR has no usable description.
+  pull-request-hygiene:
+    name: pull request hygiene
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Validate the pull request
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          HEAD_REF: ${{ github.head_ref }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          fail=0
+          echo "Base branch: $BASE_REF"
+          echo "Head branch: $HEAD_REF"
+
+          if [ "$BASE_REF" != "main" ]; then
+            echo "::error::Pull requests must target 'main' (this one targets '$BASE_REF')."
+            fail=1
+          fi
+
+          case "$HEAD_REF" in
+            main|master)
+              echo "::error::You cannot open a pull request from '$HEAD_REF'. Create a feature branch first."
+              fail=1
+              ;;
+          esac
+
+          body_clean="$(printf '%s' "$PR_BODY" | tr -d '[:space:]')"
+          if [ "${#body_clean}" -lt 20 ]; then
+            echo "::error::The pull request description is empty. Fill in .github/PULL_REQUEST_TEMPLATE.md — what changed, why, and how you tested it."
+            fail=1
+          fi
+
+          if [ "$fail" -ne 0 ]; then
+            exit 1
+          fi
+          echo "Pull request looks good."

@@ -1,0 +1,18 @@
+# CODEOWNERS
+#
+# Reviewers who are automatically requested on every pull request.
+# Default owner first, then narrower paths (last matching pattern wins).
+#
+# This file only *blocks* a merge when the repository setting
+# "Require review from Code Owners" is enabled — see docs/collaboration.md.
+
+# Everything: the maintainer
+*                       @TensorTrail766
+
+# Database schema and seed data — schema changes deserve a closer look
+/scripts/               @TensorTrail766
+/src/db/                @TensorTrail766
+
+# Workflow and repository plumbing
+/.github/               @TensorTrail766
+/.githooks/             @TensorTrail766
