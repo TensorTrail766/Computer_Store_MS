@@ -1,0 +1,239 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.17 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.17" pages="3">
+  <diagram name="01 - System Architecture" id="0">
+    <mxGraphModel dx="697" dy="336" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1100" background="#000000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="&lt;b&gt;FCSMS | System Architecture v1.0&lt;/b&gt;" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;strokeColor=none;fontSize=27;align=left;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="50" y="20" width="1300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="sub" value="Single-store web application · Modular layered architecture · Oracle persistence" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;strokeColor=none;fontSize=16;align=left;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="50" y="70" width="1300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="actors" value="&lt;b&gt;Authorized store staff&lt;/b&gt;&lt;br&gt;Admin · Manager · Sales Staff · Inventory Staff" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;" parent="1" vertex="1">
+          <mxGeometry x="400" y="120" width="600" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="browser" value="&lt;b&gt;Browser / Presentation&lt;/b&gt;&lt;br&gt;HTML forms · CSS · Jinja2-rendered pages, invoices and reports" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;" parent="1" vertex="1">
+          <mxGeometry x="400" y="220" width="600" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="routes" value="&lt;b&gt;Web / Controller layer&lt;/b&gt;&lt;br&gt;Flask routes and blueprints · sessions · request parsing&lt;br&gt;Authentication, role checks and CSRF protection" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;" parent="1" vertex="1">
+          <mxGeometry x="400" y="355" width="600" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="service" value="&lt;b&gt;Business / Service layer&lt;/b&gt;&lt;br&gt;Domain validation · workflow orchestration · authorization&lt;br&gt;Stock and financial posting · transaction ownership" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;" parent="1" vertex="1">
+          <mxGeometry x="400" y="490" width="600" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="repo" value="&lt;b&gt;Data access layer&lt;/b&gt;&lt;br&gt;Repositories · parameterized Oracle SQL&lt;br&gt;Shared connection per transaction · row locking" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;" parent="1" vertex="1">
+          <mxGeometry x="400" y="630" width="600" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="driver" value="&lt;b&gt;Database connectivity&lt;/b&gt;&lt;br&gt;python-oracledb · connection management" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;" parent="1" vertex="1">
+          <mxGeometry x="400" y="760" width="600" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="db" value="&lt;b&gt;Oracle Database&lt;/b&gt;&lt;br&gt;FCSMS schema · 30 core entities&lt;br&gt;PK / FK / UQ / CHECK · indexes · persisted records" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;shape=cylinder3;boundedLbl=1;size=15;" parent="1" vertex="1">
+          <mxGeometry x="400" y="870" width="600" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="errors" value="&lt;b&gt;Error handling&lt;/b&gt;&lt;br&gt;Safe user-facing messages&lt;br&gt;Exception translation" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;" parent="1" vertex="1">
+          <mxGeometry x="70" y="365" width="250" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="security" value="&lt;b&gt;Shared controls&lt;/b&gt;&lt;br&gt;Access control&lt;br&gt;Audit attribution&lt;br&gt;Input validation" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;" parent="1" vertex="1">
+          <mxGeometry x="1080" y="485" width="260" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="config" value="&lt;b&gt;Configuration&lt;/b&gt;&lt;br&gt;Environment settings&lt;br&gt;Protected credentials" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;" parent="1" vertex="1">
+          <mxGeometry x="70" y="760" width="250" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="backup" value="&lt;b&gt;Backup / recovery&lt;/b&gt;&lt;br&gt;Authorized database backup&lt;br&gt;Restore verification" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;" parent="1" vertex="1">
+          <mxGeometry x="1080" y="875" width="260" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="e0" value="Uses" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;" parent="1" source="actors" target="browser" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="HTTP(S) request / HTML response" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;startArrow=block;startFill=1;" parent="1" source="browser" target="routes" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="Validated request / result" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;startArrow=block;startFill=1;" parent="1" source="routes" target="service" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="SQL operations / records" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;startArrow=block;startFill=1;" parent="1" source="service" target="repo" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="Bound parameters" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;startArrow=block;startFill=1;" parent="1" source="repo" target="driver" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="Oracle connection" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;startArrow=block;startFill=1;" parent="1" source="driver" target="db" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="s0" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;dashed=1;" parent="1" source="routes" target="errors" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;dashed=1;" parent="1" source="service" target="security" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;dashed=1;" parent="1" source="config" target="driver" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;dashed=1;" parent="1" source="db" target="backup" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="footer" value="Service layer commits once on success; rolls back all related changes on failure. Browser never connects directly to Oracle." style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;strokeColor=none;fontSize=14;align=left;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="50" y="1010" width="1300" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="02 - Business Components" id="1">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageWidth="1500" pageHeight="1030" background="#000000" arrows="1" connect="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="&lt;b&gt;FCSMS | Business Component Architecture&lt;/b&gt;" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;strokeColor=none;fontSize=27;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="50" y="20" width="1400" height="50" />
+        </mxCell>
+        <mxCell id="web" value="&lt;b&gt;Flask web layer&lt;/b&gt; — routes / blueprints · authentication · request handling" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="100" y="105" width="1300" height="65" />
+        </mxCell>
+        <mxCell id="identity" value="&lt;b&gt;Identity &amp; administration&lt;/b&gt;&lt;br&gt;&lt;br&gt;Users · employees&lt;br&gt;Roles · audit" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="50" y="280" width="220" height="165" />
+        </mxCell>
+        <mxCell id="widentity" value="" edge="1" parent="1" source="web" target="identity" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;exitX=0.02;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="catalog" value="&lt;b&gt;Catalog &amp; inventory&lt;/b&gt;&lt;br&gt;&lt;br&gt;Products · categories&lt;br&gt;Stock · movements · defective stock" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="290" y="280" width="220" height="165" />
+        </mxCell>
+        <mxCell id="wcatalog" value="" edge="1" parent="1" source="web" target="catalog" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;exitX=0.23076923076923078;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="trade" value="&lt;b&gt;Sales &amp; purchasing&lt;/b&gt;&lt;br&gt;&lt;br&gt;Customers · suppliers&lt;br&gt;Sales · invoices · purchases&lt;br&gt;Customer and supplier returns" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="530" y="280" width="220" height="165" />
+        </mxCell>
+        <mxCell id="wtrade" value="" edge="1" parent="1" source="web" target="trade" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;exitX=0.4153846153846154;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="finance" value="&lt;b&gt;Financial management&lt;/b&gt;&lt;br&gt;&lt;br&gt;Accounts · payments · loans&lt;br&gt;Ledger · balances · transfers&lt;br&gt;Currencies · rate history" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="770" y="280" width="220" height="165" />
+        </mxCell>
+        <mxCell id="wfinance" value="" edge="1" parent="1" source="web" target="finance" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;exitX=0.6;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="repair" value="&lt;b&gt;After-sales service&lt;/b&gt;&lt;br&gt;&lt;br&gt;Invoice-line warranty&lt;br&gt;Repairs · repair history" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1010" y="280" width="220" height="165" />
+        </mxCell>
+        <mxCell id="wrepair" value="" edge="1" parent="1" source="web" target="repair" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;exitX=0.7846153846153846;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="report" value="&lt;b&gt;Reporting&lt;/b&gt;&lt;br&gt;&lt;br&gt;Account statements · ageing&lt;br&gt;Stock · finance · repair reports&lt;br&gt;Report history" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1250" y="280" width="220" height="165" />
+        </mxCell>
+        <mxCell id="wreport" value="" edge="1" parent="1" source="web" target="report" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;exitX=0.98;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="shared" value="&lt;b&gt;Shared service controls&lt;/b&gt;&lt;br&gt;Authorization · validation · document lifecycle · currency snapshots · audit · atomic posting" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="100" y="530" width="1300" height="75" />
+        </mxCell>
+        <mxCell id="midentity" value="" edge="1" parent="1" source="identity" target="shared" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;entryX=0.02;entryY=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="mcatalog" value="" edge="1" parent="1" source="catalog" target="shared" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;entryX=0.23076923076923078;entryY=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="mtrade" value="" edge="1" parent="1" source="trade" target="shared" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;entryX=0.4153846153846154;entryY=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="mfinance" value="" edge="1" parent="1" source="finance" target="shared" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;entryX=0.6;entryY=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="mrepair" value="" edge="1" parent="1" source="repair" target="shared" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;entryX=0.7846153846153846;entryY=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="mreport" value="" edge="1" parent="1" source="report" target="shared" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;entryX=0.98;entryY=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="repos" value="&lt;b&gt;Repositories / data access&lt;/b&gt;&lt;br&gt;Module-specific SQL · parameter binding · connection and transaction context" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="100" y="690" width="1300" height="70" />
+        </mxCell>
+        <mxCell id="oracle" value="&lt;b&gt;Oracle Database — FCSMS schema (30 entities)&lt;/b&gt;" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;shape=cylinder3;boundedLbl=1;size=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="350" y="840" width="800" height="75" />
+        </mxCell>
+        <mxCell id="sr" value="" edge="1" parent="1" source="shared" target="repos" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="rd" value="" edge="1" parent="1" source="repos" target="oracle" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="footer" value="Modules are logical components of one Flask application, not independently deployed microservices." style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;strokeColor=none;fontSize=14;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="50" y="960" width="1400" height="40" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="03 - Transaction Lifecycle" id="2">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageWidth="1200" pageHeight="1000" background="#000000" arrows="1" connect="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="&lt;b&gt;FCSMS | Transaction Processing&lt;/b&gt;" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;strokeColor=none;fontSize=27;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="50" y="20" width="1100" height="50" />
+        </mxCell>
+        <mxCell id="request" value="Receive form submission / authenticated request" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="300" y="110" width="600" height="60" />
+        </mxCell>
+        <mxCell id="validate" value="Authorize role and validate input / source document" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="300" y="215" width="600" height="60" />
+        </mxCell>
+        <mxCell id="begin" value="Acquire Oracle connection · start transaction" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="300" y="320" width="600" height="60" />
+        </mxCell>
+        <mxCell id="lock" value="Lock relevant rows · validate stock, balances, status and currency" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="300" y="425" width="600" height="60" />
+        </mxCell>
+        <mxCell id="post" value="Write source record · inventory / ledger effects · balances · audit" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="300" y="530" width="600" height="60" />
+        </mxCell>
+        <mxCell id="check" value="All operations successful?" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;shape=rhombus;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="450" y="635" width="300" height="90" />
+        </mxCell>
+        <mxCell id="commit" value="Commit once" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="170" y="765" width="300" height="55" />
+        </mxCell>
+        <mxCell id="rollback" value="Rollback entire transaction" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="730" y="765" width="300" height="55" />
+        </mxCell>
+        <mxCell id="ok" value="Redirect / confirmation page" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="170" y="880" width="300" height="55" />
+        </mxCell>
+        <mxCell id="fail" value="Safe error response / correction form" style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="730" y="880" width="300" height="55" />
+        </mxCell>
+        <mxCell id="e0" value="" edge="1" parent="1" source="request" target="validate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e1" value="" edge="1" parent="1" source="validate" target="begin" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e2" value="" edge="1" parent="1" source="begin" target="lock" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e3" value="" edge="1" parent="1" source="lock" target="post" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e4" value="" edge="1" parent="1" source="post" target="check" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="yes" value="Yes" edge="1" parent="1" source="check" target="commit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="no" value="No" edge="1" parent="1" source="check" target="rollback" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="c" value="" edge="1" parent="1" source="commit" target="ok" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="f" value="" edge="1" parent="1" source="rollback" target="fail" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=12;labelBackgroundColor=#000000;endArrow=block;endFill=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="note" value="Examples: sale, purchase, return, supplier refund, repair settlement, transfer, rate update." style="html=1;whiteSpace=wrap;fillColor=none;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=15;rounded=0;shadow=0;strokeColor=none;fontSize=14;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="50" y="950" width="1100" height="30" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
