@@ -1,4 +1,12 @@
-from oraclekit import OracleClient, OracleConfig
+import os 
+import oracledb
 
-cfg = OracleConfig(host="127.0.0.1", port=1521, service_name="ORCLPDB", user="forqani", password="forqani123")
-print("Sucessfully")
+def get_connection():
+    return oracledb.connect(
+        user=os.getenv("ORACLE_USER"),
+        password=os.getenv("ORACLE_PASSWORD"),
+        dsn=os.getenv(
+            "ORACLE_DSN",
+            "localhost:1521/ORCL"
+        )
+    )
