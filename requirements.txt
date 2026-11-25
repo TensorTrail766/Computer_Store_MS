@@ -1,0 +1,29 @@
+# Web framework
+Flask
+
+# Oracle database connectivity
+oracledb
+
+# Environment configuration
+python-dotenv
+
+# Authentication and security
+Flask-Login
+Flask-WTF
+Werkzeug
+
+# Template engine
+Jinja2
+
+# PDF invoices and reports
+reportlab
+
+# Excel reports
+openpyxl
+
+# Application server
+waitress
+
+# Testing and coverage
+pytest
+pytest-cov
