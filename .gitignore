@@ -1,0 +1,54 @@
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+env/
+.pytest_cache/
+
+# Database files and backups
+*.db
+*.sqlite
+*.sqlite3
+*.dmp
+*.dump
+*.bak
+
+# Security credentials
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+secrets.json
+
+# IDE configurations
+.vscode/
+.idea/
+
+# JavaScript dependencies
+node_modules/
+
+# Logs and temporary files
+*.log
+logs/
+temp/
+tmp/
+
+# Build files
+build/
+dist/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Coverage
+.coverage
+htmlcov/
