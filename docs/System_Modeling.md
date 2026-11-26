@@ -335,25 +335,11 @@ This matrix maps functional requirement groups to relevant models. It is a desig
 | FR-27 | Defective stock | Purchase/return activity, class, ERD |
 | FR-28 | Repair history | Sequence, class, ERD |
 
-## 14. Repository organization
 
-```text
-docs/
-├── 01_Software_Requirements_Specification.md
-├── 02_System_Architecture.md
-├── 03_Database_Design.md
-├── 04_System_Modeling.md
-└── diagrams/
-    ├── use_case.md
-    ├── class.md
-    ├── component.md
-    ├── activity.md
-    └── sequence.md
-```
 
 Place the five diagram files inside `docs/diagrams/` so the relative links resolve on GitHub. Keep the master ERD in the diagram directory under its actual repository filename. This is a recommended layout; the existing repository tree has not been inspected.
 
-## 15. Modeling review checklist
+## 14. Modeling review checklist
 
 - [ ] All 30 entities, 340 logical attributes and 91 FK roles match the master ERD.
 - [ ] All 28 functional requirement groups are traceable to the relevant models.
@@ -364,11 +350,11 @@ Place the five diagram files inside `docs/diagrams/` so the relative links resol
 - [ ] Mermaid syntax and visual readability are reviewed in the intended renderer.
 - [ ] Implementation and acceptance tests verify the agreed behavior separately.
 
-## 16. Reference documents
+## 15. Reference documents
 
-- FCSMS Software Requirements Specification v1.0 (30-entity baseline, 24 November 2026).
-- FCSMS Database Design Documentation v1.0.
-- FCSMS System Architecture v1.0.
+- FCSMS Software Requirements Specification(30-entity baseline, 26 November 2026).
+- FCSMS Database Design Documentation .
+- FCSMS System Architecture.
 - The five accompanying Mermaid diagram files listed in Section 2.
 
 Mermaid flowcharts approximate formal UML use case, activity, component, deployment and DFD notation. The models describe intended behavior and do not constitute verified deployment or test results. The master ERD and detailed diagrams remain separate to avoid duplication.
