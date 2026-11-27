@@ -11,6 +11,10 @@ class Config:
     DB_PASSWORD = os.getenv("DB_PASSWORD")
     DB_DSN = os.getenv("DB_DSN")
 
+    DB_POOL_MIN = int(os.getenv("DB_POOL_MIN", "2"))
+    DB_POOL_MAX = int(os.getenv("DB_POOL_MAX", "10"))
+    DB_POOL_INCREMENT = int(os.getenv("DB_POOL_INCREMENT", "1"))
+
 
 class DevelopmentConfig(Config):
     DEBUG = True
